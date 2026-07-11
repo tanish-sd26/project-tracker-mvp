@@ -46,71 +46,86 @@ export default function Dashboard() {
 
   return (
     <div>
-      <h1 className="text-4xl font-bold mb-8">📊 Dashboard</h1>
+      <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
+        <header className="mb-12 text-center">
+          <h1 className="text-5xl font-bold tracking-tight text-gray-900">Dashboard</h1>
+          <p className="mt-4 text-lg text-gray-600">Overview of projects, tasks and current progress.</p>
+        </header>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        <div className="bg-white p-6 rounded-lg shadow">
-          <div className="text-gray-600 text-sm">Active Projects</div>
-          <div className="text-3xl font-bold mt-2">{activeProjects}</div>
-        </div>
-
-        <div className="bg-white p-6 rounded-lg shadow">
-          <div className="text-gray-600 text-sm">Total Tasks</div>
-          <div className="text-3xl font-bold mt-2">{tasks.length}</div>
-        </div>
-
-        <div className="bg-white p-6 rounded-lg shadow">
-          <div className="text-gray-600 text-sm">Pending Tasks</div>
-          <div className="text-3xl font-bold mt-2 text-yellow-600">
-            {pendingTasks}
+        {/* Section 1: Statistics Cards */}
+        <section className="grid grid-cols-1 gap-8 sm:grid-cols-2 xl:grid-cols-4 mb-16">
+          <div className="rounded-2xl border border-gray-200 bg-white p-10 shadow-sm transition-all hover:shadow-lg hover:border-gray-300 flex flex-col justify-center min-h-40">
+            <div className="text-sm font-semibold text-gray-500 uppercase tracking-wide">▦ Active Projects</div>
+            <div className="mt-4 text-5xl font-bold text-gray-900">{activeProjects}</div>
           </div>
-        </div>
 
-        <div className="bg-white p-6 rounded-lg shadow">
-          <div className="text-gray-600 text-sm">Overdue Tasks</div>
-          <div className="text-3xl font-bold mt-2 text-red-600">
-            {overdueTasks.length}
+          <div className="rounded-2xl border border-gray-200 bg-white p-10 shadow-sm transition-all hover:shadow-lg hover:border-gray-300 flex flex-col justify-center min-h-40">
+            <div className="text-sm font-semibold text-gray-500 uppercase tracking-wide">✓ Total Tasks</div>
+            <div className="mt-4 text-5xl font-bold text-gray-900">{tasks.length}</div>
           </div>
-        </div>
-      </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white p-6 rounded-lg shadow">
-          <h2 className="text-xl font-bold mb-4">🔴 Overdue Tasks</h2>
-          {overdueTasks.length === 0 ? (
-            <p className="text-gray-500">No overdue tasks</p>
-          ) : (
-            <ul className="space-y-2">
-              {overdueTasks.map((task) => (
-                <li key={task.id} className="text-sm border-l-4 border-red-500 pl-3">
-                  <div className="font-medium">{task.title}</div>
-                  <div className="text-gray-600">
-                    {task.project?.name} • Due{' '}
-                    {new Date(task.dueDate!).toLocaleDateString()}
-                  </div>
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
+          <div className="rounded-2xl border border-gray-200 bg-white p-10 shadow-sm transition-all hover:shadow-lg hover:border-gray-300 flex flex-col justify-center min-h-40">
+            <div className="text-sm font-semibold text-gray-500 uppercase tracking-wide">! Pending Tasks</div>
+            <div className="mt-4 text-5xl font-bold text-yellow-600">{pendingTasks}</div>
+          </div>
 
-        <div className="bg-white p-6 rounded-lg shadow">
-          <h2 className="text-xl font-bold mb-4">⚡ High Priority Tasks</h2>
-          {highPriorityTasks.length === 0 ? (
-            <p className="text-gray-500">No high priority tasks</p>
-          ) : (
-            <ul className="space-y-2">
-              {highPriorityTasks.slice(0, 5).map((task) => (
-                <li key={task.id} className="text-sm border-l-4 border-orange-500 pl-3">
-                  <div className="font-medium">{task.title}</div>
-                  <div className="text-gray-600">
-                    {task.project?.name} • {task.status}
-                  </div>
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
+          <div className="rounded-2xl border border-gray-200 bg-white p-10 shadow-sm transition-all hover:shadow-lg hover:border-gray-300 flex flex-col justify-center min-h-40">
+            <div className="text-sm font-semibold text-gray-500 uppercase tracking-wide">● Overdue Tasks</div>
+            <div className="mt-4 text-5xl font-bold text-red-600">{overdueTasks.length}</div>
+          </div>
+        </section>
+
+        {/* Section 2: Information Cards */}
+        <section className="grid grid-cols-1 gap-10 lg:grid-cols-2">
+          <div className="rounded-2xl border border-gray-200 bg-white shadow-sm transition-all hover:shadow-lg flex flex-col h-96 overflow-hidden">
+            <div className="border-b border-gray-200 bg-gray-50/50 px-10 py-8">
+              <h2 className="text-xl font-bold text-gray-900">🔴 Overdue Tasks</h2>
+            </div>
+            <div className="flex-1 p-10 overflow-auto">
+              {overdueTasks.length === 0 ? (
+                <p className="text-gray-500 text-base">No overdue tasks</p>
+              ) : (
+                <ul className="space-y-4">
+                  {overdueTasks.map((task) => (
+                    <li key={task.id} className="flex gap-4 pb-4 border-b border-gray-100 last:border-0">
+                      <div className="h-3 w-3 rounded-full bg-red-500 shrink-0 mt-1.5" />
+                      <div className="flex-1 min-w-0">
+                        <div className="font-semibold text-gray-900 text-base">{task.title}</div>
+                        <div className="text-sm text-gray-500 mt-2">
+                          {task.project?.name} • Due {new Date(task.dueDate!).toLocaleDateString()}
+                        </div>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </div>
+
+          <div className="rounded-2xl border border-gray-200 bg-white shadow-sm transition-all hover:shadow-lg flex flex-col h-96 overflow-hidden">
+            <div className="border-b border-gray-200 bg-gray-50/50 px-10 py-8">
+              <h2 className="text-xl font-bold text-gray-900">⚡ High Priority Tasks</h2>
+            </div>
+            <div className="flex-1 p-10 overflow-auto">
+              {highPriorityTasks.length === 0 ? (
+                <p className="text-gray-500 text-base">No high priority tasks</p>
+              ) : (
+                <ul className="space-y-4">
+                  {highPriorityTasks.slice(0, 8).map((task) => (
+                    <li key={task.id} className="flex gap-4 pb-4 border-b border-gray-100 last:border-0">
+                      <div className="h-3 w-3 rounded-full bg-orange-500 shrink-0 mt-1.5" />
+                      <div className="flex-1 min-w-0">
+                        <div className="font-semibold text-gray-900 text-base">{task.title}</div>
+                        <div className="text-sm text-gray-500 mt-2">{task.project?.name} • {task.status}</div>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </div>
+        </section>
+
       </div>
     </div>
   );
