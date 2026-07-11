@@ -1,8 +1,9 @@
+import { PartialType } from '@nestjs/mapped-types';
+import { IsOptional, IsString } from 'class-validator';
 import { CreateProjectDto } from './create-project.dto';
-import { IsString, IsOptional } from 'class-validator';
 
-export class UpdateProjectDto extends CreateProjectDto {
-  @IsString()
+export class UpdateProjectDto extends PartialType(CreateProjectDto) {
   @IsOptional()
-  status?: string;
+  @IsString()
+  declare status?: string;
 }
