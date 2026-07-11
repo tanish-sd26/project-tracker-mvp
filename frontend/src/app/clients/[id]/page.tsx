@@ -65,7 +65,7 @@ export default function ClientDetailPage() {
           {!showEditForm && (
             <button
               onClick={() => setShowEditForm(true)}
-              className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700"
+              className="h-9 min-w-[96px] inline-flex items-center justify-center rounded-md bg-amber-400 px-3 text-sm font-medium text-gray-900 hover:bg-amber-500 transition"
             >
               Edit
             </button>
@@ -91,7 +91,7 @@ export default function ClientDetailPage() {
         {!showProjectForm && (
           <button
             onClick={() => setShowProjectForm(true)}
-            className="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700"
+            className="h-9 min-w-[110px] inline-flex items-center justify-center rounded-md bg-green-600 px-3 text-sm font-medium text-white hover:bg-green-700 transition"
           >
             + New Project
           </button>
@@ -127,13 +127,13 @@ export default function ClientDetailPage() {
               <div className="flex gap-2">
                 <Link
                   href={`/projects/${project.id}`}
-                  className="flex-1 bg-blue-600 text-white text-center px-3 py-2 rounded hover:bg-blue-700"
+                  className="h-9 min-w-[84px] inline-flex items-center justify-center rounded-md bg-blue-600 px-3 text-sm font-medium text-white hover:bg-blue-700 transition"
                 >
                   View
                 </Link>
                 <button
                   onClick={() => handleDeleteProject(project.id)}
-                  className="flex-1 bg-red-600 text-white px-3 py-2 rounded hover:bg-red-700"
+                  className="h-9 min-w-[84px] inline-flex items-center justify-center rounded-md bg-red-600 px-3 text-sm font-medium text-white hover:bg-red-700 transition"
                 >
                   Delete
                 </button>
