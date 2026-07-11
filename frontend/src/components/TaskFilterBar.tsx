@@ -1,7 +1,5 @@
 'use client';
 
-import { useCallback } from 'react';
-
 interface TaskFilterBarProps {
   onStatusChange: (status: string) => void;
   onPriorityChange: (priority: string) => void;
@@ -16,13 +14,13 @@ export function TaskFilterBar({
   selectedPriority,
 }: TaskFilterBarProps) {
   return (
-    <div className="bg-white p-4 rounded-lg shadow mb-6 flex gap-4">
-      <div>
-        <label className="block text-sm font-medium mb-2">Filter by Status</label>
+    <section className="mb-6 flex flex-col gap-4 rounded-xl border border-gray-200 bg-white p-5 shadow-sm sm:flex-row sm:items-end">
+      <div className="min-w-48 flex-1">
+        <label className="mb-2 block text-sm font-medium text-gray-700">Filter by Status</label>
         <select
           value={selectedStatus}
           onChange={(e) => onStatusChange(e.target.value)}
-          className="p-2 border rounded"
+          className="h-10 w-full rounded-lg border border-gray-300 px-3 text-sm outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
         >
           <option value="">All Statuses</option>
           <option value="Todo">Todo</option>
@@ -31,12 +29,12 @@ export function TaskFilterBar({
         </select>
       </div>
 
-      <div>
-        <label className="block text-sm font-medium mb-2">Filter by Priority</label>
+      <div className="min-w-48 flex-1">
+        <label className="mb-2 block text-sm font-medium text-gray-700">Filter by Priority</label>
         <select
           value={selectedPriority}
           onChange={(e) => onPriorityChange(e.target.value)}
-          className="p-2 border rounded"
+          className="h-10 w-full rounded-lg border border-gray-300 px-3 text-sm outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
         >
           <option value="">All Priorities</option>
           <option value="Low">Low</option>
@@ -44,6 +42,6 @@ export function TaskFilterBar({
           <option value="High">High</option>
         </select>
       </div>
-    </div>
+    </section>
   );
 }
