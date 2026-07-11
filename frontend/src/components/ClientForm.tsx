@@ -52,57 +52,57 @@ export function ClientForm({
   };
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg shadow">
-      {error && <div className="bg-red-100 text-red-700 p-3 rounded mb-4">{error}</div>}
+    <form onSubmit={handleSubmit} className="mx-auto max-w-2xl rounded-xl border border-gray-200 bg-white p-6 shadow-sm sm:p-8">
+      {error && <div className="mb-5 rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-700">{error}</div>}
 
-      <div className="mb-4">
-        <label className="block text-sm font-medium mb-2">Client Name *</label>
+      <div className="mb-5">
+        <label className="mb-2 block text-sm font-medium text-gray-700">Client Name <span className="text-red-600">*</span></label>
         <input
           type="text"
           name="name"
           value={formData.name}
           onChange={handleChange}
-          className="w-full p-2 border rounded"
+          className="h-11 w-full rounded-lg border border-gray-300 px-3 text-sm outline-none transition focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
           placeholder="Enter client name"
         />
       </div>
 
-      <div className="mb-4">
-        <label className="block text-sm font-medium mb-2">Email</label>
+      <div className="mb-5">
+        <label className="mb-2 block text-sm font-medium text-gray-700">Email</label>
         <input
           type="email"
           name="email"
           value={formData.email}
           onChange={handleChange}
-          className="w-full p-2 border rounded"
+          className="h-11 w-full rounded-lg border border-gray-300 px-3 text-sm outline-none transition focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
           placeholder="client@example.com"
         />
       </div>
 
-      <div className="mb-4">
-        <label className="block text-sm font-medium mb-2">Phone</label>
+      <div className="mb-6">
+        <label className="mb-2 block text-sm font-medium text-gray-700">Phone</label>
         <input
           type="tel"
           name="phone"
           value={formData.phone}
           onChange={handleChange}
-          className="w-full p-2 border rounded"
+          className="h-11 w-full rounded-lg border border-gray-300 px-3 text-sm outline-none transition focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
           placeholder="+91-1234567890"
         />
       </div>
 
-      <div className="flex gap-4">
+      <div className="flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
         <button
           type="submit"
           disabled={loading}
-          className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 disabled:opacity-50"
+          className="h-11 rounded-lg bg-blue-600 px-5 text-sm font-medium text-white transition-colors hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
         >
           {loading ? 'Saving...' : 'Save Client'}
         </button>
         <button
           type="button"
           onClick={onCancel}
-          className="bg-gray-300 text-gray-700 px-6 py-2 rounded hover:bg-gray-400"
+          className="h-11 rounded-lg border border-gray-300 bg-white px-5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50"
         >
           Cancel
         </button>
