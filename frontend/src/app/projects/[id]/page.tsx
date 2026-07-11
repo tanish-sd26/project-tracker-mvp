@@ -67,14 +67,14 @@ export default function ProjectDetailPage() {
             <h1 className="text-4xl font-bold mb-2">{project.name}</h1>
             <p className="text-gray-600 mb-2">{project.client?.name}</p>
             <p className="text-gray-600 mb-4">{project.description}</p>
-            <div className="inline-block px-4 py-2 bg-blue-100 text-blue-800 rounded">
+                  <div className="inline-block px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
               {project.status}
             </div>
           </div>
           {!showEditForm && (
             <button
               onClick={() => setShowEditForm(true)}
-              className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700"
+                    className="h-9 min-w-[96px] inline-flex items-center justify-center rounded-md bg-amber-400 px-3 text-sm font-medium text-gray-900 hover:bg-amber-500 transition"
             >
               Edit
             </button>
@@ -106,7 +106,7 @@ export default function ProjectDetailPage() {
         {!showTaskForm && (
           <button
             onClick={() => setShowTaskForm(true)}
-            className="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700"
+            className="h-9 min-w-[110px] inline-flex items-center justify-center rounded-md bg-green-600 px-3 text-sm font-medium text-white hover:bg-green-700 transition"
           >
             + New Task
           </button>
@@ -142,52 +142,50 @@ export default function ProjectDetailPage() {
                     <p className="text-gray-600 text-sm mb-3">{task.description}</p>
                   )}
                   <div className="flex gap-2 mb-2">
-                    <span
-                      className={`px-3 py-1 text-xs rounded-full ${
-                        task.status === 'Done'
-                          ? 'bg-green-100 text-green-800'
-                          : task.status === 'In Progress'
-                          ? 'bg-blue-100 text-blue-800'
-                          : 'bg-gray-100 text-gray-800'
-                      }`}
-                    >
-                      {task.status}
-                    </span>
-                    <span
-                      className={`px-3 py-1 text-xs rounded-full ${
-                        task.priority === 'High'
-                          ? 'bg-red-100 text-red-800'
-                          : task.priority === 'Medium'
-                          ? 'bg-yellow-100 text-yellow-800'
-                          : 'bg-gray-100 text-gray-800'
-                      }`}
-                    >
-                      {task.priority} Priority
-                    </span>
-                  </div>
-                  {task.dueDate && (
-                    <p className="text-sm text-gray-600">
-                      Due: {new Date(task.dueDate).toLocaleDateString()}
-                    </p>
-                  )}
-                  {task.assignee && (
-                    <p className="text-sm text-gray-600">
-                      Assigned to: {task.assignee.name}
-                    </p>
-                  )}
-                </div>
-                <Link
-                  href={`/tasks/${task.id}`}
-                  className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 mr-2"
-                >
-                  Edit
-                </Link>
-                <button
-                  onClick={() => handleDeleteTask(task.id)}
-                  className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
-                >
-                  Delete
-                </button>
+                          <span className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-medium ${
+                            task.status === 'Done'
+                              ? 'bg-green-100 text-green-800'
+                              : task.status === 'In Progress'
+                              ? 'bg-blue-100 text-blue-800'
+                              : 'bg-gray-100 text-gray-800'
+                          }`}>
+                            {task.status}
+                          </span>
+                          <span className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-medium ${
+                            task.priority === 'High'
+                              ? 'bg-red-100 text-red-800'
+                              : task.priority === 'Medium'
+                              ? 'bg-yellow-100 text-yellow-800'
+                              : 'bg-gray-100 text-gray-800'
+                          }`}>
+                            {task.priority} Priority
+                          </span>
+                        </div>
+                        {task.dueDate && (
+                          <p className="text-sm text-gray-600">
+                            Due: {new Date(task.dueDate).toLocaleDateString()}
+                          </p>
+                        )}
+                        {task.assignee && (
+                          <p className="text-sm text-gray-600">
+                            Assigned to: {task.assignee.name}
+                          </p>
+                        )}
+                      </div>
+                      <div className="mt-4 flex gap-3 justify-end">
+                        <Link
+                          href={`/tasks/${task.id}`}
+                          className="h-9 min-w-[96px] inline-flex items-center justify-center rounded-md bg-amber-400 text-gray-900 px-3 text-sm font-medium hover:bg-amber-500 transition"
+                        >
+                          Edit
+                        </Link>
+                        <button
+                          onClick={() => handleDeleteTask(task.id)}
+                          className="h-9 min-w-[96px] inline-flex items-center justify-center rounded-md bg-red-600 text-white px-3 text-sm font-medium hover:bg-red-700 transition"
+                        >
+                          Delete
+                        </button>
+                      </div>
               </div>
             </div>
           ))}
